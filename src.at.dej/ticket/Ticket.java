@@ -8,7 +8,7 @@ public class Ticket {
 
     public Ticket()
     {
-        createdTimeStamp = System.currentTimeMillis();
+        this.createdTimeStamp = System.currentTimeMillis();
         id = random.nextInt();
     }
 
@@ -28,4 +28,5 @@ public class Ticket {
         this.payedTimeStamp = payedTimeStamp;
     }
     
+   
 }
