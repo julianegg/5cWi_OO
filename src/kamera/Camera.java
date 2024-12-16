@@ -1,4 +1,6 @@
+package kamera;
 
+import java.util.Random;
 
 public class Camera {
     
