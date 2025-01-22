@@ -43,8 +43,31 @@ app.use(cors());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
-app.get("/", (req, res) => {
-  res.send("Hello World, from express");
+app.get("/people", (req, res) => {
+  res.send(persons);
+});
+
+app.post("/people", (req, res) => {
+  const person = req.body;
+  person.id = persons.length + 1;
+  persons.push(person);
+  res.json(person);
+});
+app.delete("/people/:id", (req, res) => {
+  const id = parseInt(req.params.id);
+  persons = persons.filter(person => person.id !== id);
+  res.json({ message: "Person deleted successfully" });
+});
+
+app.put("/people/:id", (req, res) => {
+  const id = +req.params.id;
+  const person  = persons.find(person => person.id === id);
+  if (person) {
+    Object.assign(person, req.body);
+    res.json(person);
+  } else {
+    res.status(404).send('Not found');
+  }
 });
 
 
